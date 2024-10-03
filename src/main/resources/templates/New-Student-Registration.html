@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminHomepage</title>
+    <link rel="stylesheet" href="AdminHomepage.css" th:href="@{/css/AdminHomepage.css}"/>
+    <link rel="stylesheet" href="New-Student-Registration.css" th:href="@{/css/New-Student-Registration.css}"/>
+  <link rel="stylesheet" href="footer.css" th:href="@{/css/footer.css}"/>
+   <link rel="stylesheet" href="header.css" th:href="@{/css/header.css}"/>
+     <link rel="stylesheet" href="SideNavbar.css" th:href="@{/css/SideNavbar.css}"/>
+   
+  
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+   <!-- Importing NavBar -->
+	<div th:insert="header.html :: header"></div>
+   
+<div class="container-fluid">
+    <div class="row">
+        <!-- Fixed Navbar -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar navbar-nav dashboard">
+     <!-- side navbar -->
+       <div th:insert="SideNavbar.html :: sidenavbar"></div>
+        </div>
+                   <!-- for side space purpose-->
+        <div class=" col-lg-1 ">
+
+        </div>
+        <!-- Main content -->
+            
+            <div class="col-md-9 ml-sm-auto col-lg-8  content  placements-row">
+                <div class="container">
+                    <h2 class="my-4 text-center heading1">Student Registration Form</h2>
+                    <form th:action="@{/students/save}" th:object="${student}" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="firstname">First Name</label>
+                                <input type="text" class="form-control" id="firstname" th:field="*{firstName}" placeholder="Enter first name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" th:field="*{lastName}" placeholder="Enter last name" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" th:field="*{dob}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="gender">Gender</label>
+                                <select class="form-control" id="gender" th:field="*{gender}" required>
+                                    <option value="" disabled selected>Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Enter email" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Enter password" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="phonenumber">Phone Number</label>
+                                <input type="text" class="form-control" id="phonenumber" th:field="*{phoneNumber}" placeholder="Enter phone number" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" th:field="*{address}" placeholder="Enter address" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="enrollmentdate">Enrollment Date</label>
+                                <input type="date" class="form-control" id="enrollmentdate" th:field="*{enrollmentDate}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="qualification">Qualification</label>
+                                <select class="form-control" id="qualification" th:field="*{qualification}" required>
+                                    <option value="" disabled selected>Select qualification</option>
+                                    <option value="bsc">BSc</option>
+                                    <option value="btech">BTech</option>
+                                    <option value="msc">MSc</option>
+                                    <option value="mtech">MTech</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="passedoutyear">Passed Out Year</label>
+                                <input type="date" class="form-control" id="passedoutyear" th:field="*{passedOutYear}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cgpa">CGPA</label>
+                                <input type="text" class="form-control" id="cgpa" th:field="*{cgpa}" placeholder="Enter CGPA" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="status">Status</label>
+                                <select class="form-control" id="status" th:field="*{status}" required>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="graduated">Graduated</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="attendance">Overall Attendance</label>
+                                <input type="text" class="form-control" id="attendance" th:field="*{overallAttendance}" placeholder="Enter attendance percentage" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="fee">Fee</label>
+                                <input type="text" class="form-control" id="fee" th:field="*{fee}" placeholder="Enter fee amount" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="photo">Photo</label>
+                                <input type="file" class="form-control-file" id="photo" th:field="*{photo}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Course</label>
+                            <select class="form-control" id="course" th:field="*{course}" required>
+                                <option value="" disabled selected>Select course</option>
+                                <option th:each="course : ${courses}" th:value="${course.name}" th:text="${course.name}"></option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                
+            </div>
+           <!-- for side space purpose-->
+           <div class=" col-lg-1 ">
+
+           </div>
+       
+    </div>
+</div>
+
+
+<!-- Footer -->
+
+<!-- Importing Footer -->
+	<div th:insert="footer.html :: footer"></div>
+
+</body>
+</html>

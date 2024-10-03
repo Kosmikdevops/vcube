@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list of Batches</title>
+    <link rel="stylesheet" href="AdminHomepage.css" th:href="@{/css/AdminHomepage.css}"/>
+    <link rel="stylesheet" href="BatchesHomepage.css" th:href="@{/css/BatchesHomepage.css}"/>
+    <link rel="stylesheet" href="footer.css" th:href="@{/css/footer.css}"/>
+   <link rel="stylesheet" href="header.css" th:href="@{/css/header.css}"/>
+                  <link rel="stylesheet" href="SideNavbar.css" th:href="@{/css/SideNavbar.css}"/>
+    
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Importing NavBar -->
+	<div th:insert="header.html :: header"></div>
+    
+    
+<div class="container-fluid">
+    <div class="row">
+        <!-- Fixed Navbar -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar navbar-nav dashboard">
+     <!-- side navbar -->
+       <div th:insert="SideNavbar.html :: sidenavbar"></div>
+        </div>
+
+        <!-- Main content -->
+            
+            <div class="col-md-9 ml-sm-auto col-lg-10  content  placements-row">
+                                
+                <div class="container">
+                    <h1 class="mb-4 text-center heading1">Batch Details</h1>
+                    
+                    <!-- Create New Batch Button -->
+                    <a th:href="@{/batch/add}" class="btn btn-primary mb-4" href="Add-newBatch.html">Create New Batch <i class="fa-solid fa-arrow-right"></i></a>
+            
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Bid</th>
+                                <th scope="col">Batch Name</th>
+                                <th scope="col">Batch Starting Date</th>
+                                <th scope="col">Batch Status</th>
+                                <th scope="col">Current Going Topic</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Thymeleaf Iteration Over Batches -->
+                            <tr th:each="batch : ${batches}">
+                                <td th:text="${batch.id}"></td>
+                                <td th:text="${batch.batchName}"></td>
+                                <td th:text="${batch.batchStartingDate}"></td>
+                                <td th:text="${batch.batchStatus}"></td>
+                                <td th:text="${batch.currentGoingTopic}"></td>
+                                <td>
+                                    <a href="Edit-Batch-Based-on-Batchname.html"  th:href="@{/batch/edit(batchName=${batch.batchName})}" class="btn btn-secondary btn-sm " >
+                                        Edit <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="New-Student-Registration.html" th:href="@{/student/add(batchName=${batch.batchName})}" class="btn btn-success btn-sm">
+                                        Add New Student
+                                    </a>
+                                    <a href="List-of-Students.html" th:href="@{/student/list(batchName=${batch.batchName})}" class="btn btn-primary btn-sm">
+                                        List of Students
+                                    </a>
+                                </td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+           </div>
+            
+       
+    </div>
+</div>
+
+<!-- Importing Footer -->
+	<div th:insert="footer.html :: footer"></div>
+
+</body>
+</html>

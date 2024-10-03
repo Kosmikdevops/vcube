@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+.Add-NewCourse-div{
+    background: #6c757d17;
+    border: none;
+
+}
+.navbar-nav{
+    position: sticky;
+    top: 0%;
+}

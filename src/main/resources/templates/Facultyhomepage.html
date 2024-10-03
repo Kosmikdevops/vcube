@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FacultyHomepage</title>
+    <link rel="stylesheet" href="AdminHomepage.css" th:href="@{/css/AdminHomepage.css}"/>
+    <link rel="stylesheet" href="FacultyHomepage.css" th:href="@{/css/FacultyHomepage.css}"/>
+    <link rel="stylesheet" href="footer.css" th:href="@{/css/footer.css}"/>
+    <link rel="stylesheet" href="header.css" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" href="SideNavbar.css" th:href="@{/css/SideNavbar.css}"/>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+ <!-- Importing NavBar -->
+	<div th:insert="header.html :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Fixed Navbar -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar navbar-nav dashboard">
+        <!-- side navbar -->
+            <div th:insert="SideNavbar.html :: sidenavbar"></div>
+        </div>
+
+        <!-- Main content -->
+            <!-- Faculty list -->
+
+            <div class="col-md-9 ml-sm-auto col-lg-10  content  placements-row">
+                <div class="container mt-3">
+                    <a th:href="@{/getFacultyRegisterpage}" class="btn btn-primary mb-4">Add new Faculty <i class="fa-solid fa-arrow-right"></i></a>
+                   <div class="row">
+                    <!-- Loop through the list of faculty members --> 
+                    <div class="col-md-3" th:each="faculty : ${facultyList}">
+                        <div class="card mb-4 facultycards">
+                            <!-- Faculty Photo -->
+                            <!--  <img th:src="@{${faculty.photoUrl}}" class="card-img-top" alt="Faculty Photo"> -->
+                            <img height="250px"  th:src="@{${'/display?id=' + faculty.id}}" alt="Faculty Photo">
+                            <div class="card-body">
+                                <!-- Faculty Name -->
+                                <h5 class="card-title text-center" th:text="${faculty.firstname}"><strong>Name</strong></h5>
+                                <!-- Faculty Email -->
+                                <p class="card-text"><strong>Email:</strong> <span th:text="${faculty.email}"></span></p>
+                                <!-- Faculty Phone Number -->
+                                <p class="card-text"><strong>Phone:</strong> <span th:text="${faculty.phonenumber}"></span></p>
+                                <!-- Years of Experience -->
+                                <p class="card-text"><strong>Experience:</strong> <span th:text="${faculty.experince}"></span> years</p>
+                                <!-- Course Taught -->
+                                <p class="card-text"><strong>Course:</strong> <span th:text="${faculty.course.coursename}"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of faculty loop -->
+                </div>
+                            </div>
+                        </div>
+                   </div> 
+          </div>
+           
+<!-- Importing Footer -->
+<div class="container-fluid">
+	<div th:insert="footer.html :: footer"></div>
+</div>
+
+</body>
+</html>
